@@ -1,8 +1,7 @@
 <x-layout>
     <section class="hero">
         <div class="container">
-            <h1>Already Registered?</h1>
-            <p>Login here:</p>
+            <h1>Reset your Password here:</h1>
         </div>
     </section>
     <div class="container">
@@ -11,7 +10,7 @@
             {{session('success')}}
         </div>
         @endif
-        <form id="registration-form" action="/login" method="post">
+        <form id="registration-form" action="/reset-password" method="post">
             @csrf
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -22,6 +21,7 @@
                 </div>
                 @enderror
             </div>
+            <input type="hidden" name="token" value="{{request()->route('token')}}">
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password">
@@ -31,13 +31,18 @@
                 </div>
                 @enderror
             </div>
+            <div class="form-group">
+                <label for="password">New Password:</label>
+                <input type="password" id="password" name="password_confirmation">
+                @error('password')
+                <div class="fail-message">
+                    {{$message}}
+                </div>
+                @enderror
+            </div>
 
-            <label>
-                <input type="checkbox" id="remember-me" name="remember"> Remember Me
-            </label>
-            
-            <button class="btn-create" type="submit">Login</button><br>
-            <a href="{{route('password.request')}}">Forgot yout Password?</a>
+            <button class="btn-create" type="submit">Reset your Password</button><br>
+
         </form>
     </div>
 </x-layout>

@@ -28,6 +28,7 @@
             @else
             <ul class="nav-links">
                 <li><a href={{route('register')}}>Register</a></li>
+                <li><a href={{route('login')}}>Login</a></li>
             </ul> 
             @endauth
         </div>
